@@ -8,8 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import lombok.extern.java.Log;
 
+import com.zampa.app.modelos.Dificultad;
 /* LIBRERIAS INTERNAS */
 import com.zampa.app.modelos.Receta;
+import com.zampa.app.repositorios.DificultadRepository;
 import com.zampa.app.repositorios.RecetaRepository;
 
 @Log
@@ -17,6 +19,9 @@ import com.zampa.app.repositorios.RecetaRepository;
 public class ServiceImpl implements Servicio {
 	@Autowired
 	private RecetaRepository recetaRepository;
+	
+	@Autowired
+	private DificultadRepository dificultadRepository;
 
 	@Override
 	public Page<Receta> listadoRecetas(Pageable pageable) {
@@ -25,8 +30,22 @@ public class ServiceImpl implements Servicio {
 	}
 
 	@Override
+	public Page<Receta> listadoRecetas(Pageable pageable, Long idDificultad) {
+		return recetaRepository.findByDificultadId(pageable, idDificultad);
+	}
+	
+	@Override
 	public Receta detalleReceta(Long id) {
 		return recetaRepository.findById(id).orElse(null);
 	}
 
+	@Override
+	public Page<Dificultad> listadoDificultades(Pageable pageable) {
+		return dificultadRepository.findAll(pageable);
+	}
+
+	@Override
+	public Dificultad detalleDificultad(Long idDificultad) {
+		return dificultadRepository.findById(idDificultad).orElse(null);
+	}
 }
