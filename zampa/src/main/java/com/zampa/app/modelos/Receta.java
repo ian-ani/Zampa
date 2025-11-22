@@ -6,7 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,10 +29,10 @@ public class Receta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    // El join
-    //private Long fk_dificultad;
+    @ManyToOne
+    @JoinColumn(name = "id_dificultad")
+    private Dificultad dificultad;
     
-    // A lo mejor luego tiene que ser mas grande
     @Size(max = 255)
     private String imagen;
     
