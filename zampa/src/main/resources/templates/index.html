@@ -11,7 +11,7 @@
 			<div class="card-body text-dark">
 				<h5 class="card-title" th:text="*{nombre}">Título de la receta</h5>
 				<p class="card-text">
-					<a href="">Ver receta</a>
+					<a href="#" th:href="@{/receta(id=*{id})}">Ver receta</a>
 				</p>
 			</div>
 			<div class="card-footer bg-danger">
@@ -26,7 +26,7 @@
 			<div class="card-body text-dark">
 				<h5 class="card-title" th:text="*{nombre}">Título de la receta</h5>
 				<p class="card-text">
-					<a href="">Ver receta</a>
+					<a href="#" th:href="@{/receta(id=*{id})}">Ver receta</a>
 				</p>
 			</div>
 			<div class="card-footer bg-danger">
