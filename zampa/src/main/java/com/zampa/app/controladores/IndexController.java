@@ -18,7 +18,6 @@ import com.zampa.app.servicios.Servicio;
 @Controller
 public class IndexController {
 	private static final int TAMANO_PAGINA = 10;
-	private static final int DIFICULTADES = 3;
 	
 	@Autowired
 	private Servicio servicio;
@@ -38,7 +37,6 @@ public class IndexController {
 
 		modelo.addAttribute("dificultad", dificultad);
 		modelo.addAttribute("pagina", pagina);
-		modelo.addAttribute("dificultades", servicio.listadoDificultades(Pageable.ofSize(DIFICULTADES)));
 		
 		return "index";
 	}

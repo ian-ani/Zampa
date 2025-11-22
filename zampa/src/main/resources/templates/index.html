@@ -2,7 +2,7 @@
 <html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="https://www.thymeleaf.org" lang="es-ES">
 <!-- head  -->
-<title th:text="${dificultad.dificultad == 'Todas'} ? 'Zampa!' : 'Zampa - ' + ${dificultad.dificultad}">Zampa!</title>
+<title th:text="${dificultad.dificultad == 'Todas'} ? 'Zampa!' : 'Zampa - ' + ${dificultad.dificultad} + 'es'">Zampa!</title>
 <!-- body -->
 <main>
 	<div class="card-group">
