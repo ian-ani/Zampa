@@ -13,7 +13,7 @@ import com.zampa.app.servicios.Servicio;
 
 @Controller
 public class IndexController {
-	private static final int TAMANO_PAGINA = 5;
+	private static final int TAMANO_PAGINA = 10;
 	
 	@Autowired
 	private Servicio servicio;
@@ -30,5 +30,10 @@ public class IndexController {
 		modelo.addAttribute("receta", servicio.detalleReceta(id));
 		
 		return "receta";
+	}
+	
+	@GetMapping("anadir")
+	public String anadir() {
+		return "anadir";
 	}
 }

@@ -16,7 +16,7 @@ import com.zampa.app.servicios.Servicio;
 
 @Component
 public class Pruebas implements CommandLineRunner {
-	private static final int TAMANO_PAGINA = 5;
+	private static final int TAMANO_PAGINA = 10;
 	
 	@Autowired
 	private DificultadRepository dificultadRepository;
