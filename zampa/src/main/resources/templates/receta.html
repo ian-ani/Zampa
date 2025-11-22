@@ -2,10 +2,10 @@
 <html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
 	xmlns:th="https://www.thymeleaf.org" lang="es-ES">
 <!-- head  -->
-<title>NOMBRE RECETA</title>
+<title th:text="${receta.nombre}">Título de la receta</title>
 <!-- body -->
 <main>
-	<div class="card mb-3" th:object="${receta}">
+	<div class="card mb-3 shadow" th:object="${receta}">
 	  <div class="row g-0">
 	    <div class="col-md-4">
 	      <img th:src="*{imagen} != null ? *{imagen} : '/img/default.webp'" class="img-fluid rounded-start" alt="...">
