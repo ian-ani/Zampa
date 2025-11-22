@@ -23,15 +23,20 @@ public class IndexController {
 	private Servicio servicio;
 	
 	@GetMapping
-	public String index(Model modelo, @RequestParam(name = "id", required = false) Long idDificultad) {
+	public String index(Model modelo, @RequestParam(name = "id", required = false) Long idDificultad, 
+			@RequestParam(name = "pagina", required = false, defaultValue = "0") Integer numPagina) {
+		
 		Page<Receta> pagina;
+		Pageable pageable = Pageable.ofSize(TAMANO_PAGINA).withPage(numPagina);
+		
+		
 		Dificultad dificultad;
 		
 		if (idDificultad == null) {
-			pagina = servicio.listadoRecetas(Pageable.ofSize(TAMANO_PAGINA));
+			pagina = servicio.listadoRecetas(pageable);			
 			dificultad = Dificultad.builder().dificultad("Todas").build();
 		} else {
-			pagina = servicio.listadoRecetas(Pageable.ofSize(TAMANO_PAGINA), idDificultad);
+			pagina = servicio.listadoRecetas(pageable, idDificultad);
 			dificultad = servicio.detalleDificultad(idDificultad);
 		}
 
