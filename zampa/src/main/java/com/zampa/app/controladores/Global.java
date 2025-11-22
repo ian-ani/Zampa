@@ -19,7 +19,7 @@ public class Global {
 	private Servicio servicio;
 	
 	@ModelAttribute
-	private void dificultades(Model modelo) {
+	private void rellenarModelo(Model modelo) {
 		modelo.addAttribute("dificultades", servicio.listadoDificultades(Pageable.ofSize(DIFICULTADES)));
 	}
 }
