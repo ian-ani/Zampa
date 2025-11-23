@@ -12,7 +12,7 @@
 		<div class="col" th:each="receta, iter: ${pagina.content}"
 			th:object="${receta}">
 			<div class="card border-danger">
-				<img th:src="*{imagen} != null ? *{imagen} : '/img/default.webp'"
+				<img th:src="${imagen != null and !imagen.isEmpty() ? imagen : '/img/default.webp'}"
 					class="card-img-top" th:alt="'Imagen de ' + *{nombre}" th:title="*{nombre}">
 
 				<div class="card-body text-dark">
