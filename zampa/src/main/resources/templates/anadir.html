@@ -7,29 +7,39 @@
 <main>
 	<div class="border border-danger rounded shadow mt-5 mb-5 p-5">
 		<h2 class="mb-5 fs-4">Añadir receta</h2>
-		<form class="mx-auto" th:action="@{/registro}" method="post" th:object="${receta}">
+		<form class="mx-auto" th:action="@{/anadir}" method="post"
+			th:object="${receta}">
 			<div class="row mb-3">
 				<label for="nombre" class="col-sm-2 col-form-label">Título</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nombre">
+					<input type="text" class="form-control" id="nombre"
+						th:field="*{nombre}">
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
 				<div class="col-sm-10">
-					<input type="file" class="form-control" id="imagen">
+					<input type="file" class="form-control" id="imagen"
+						th:field="*{imagen}">
 				</div>
 			</div>
 			<div class="row mb-3">
 				<label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
 				<div class="col-sm-10">
-					<textarea rows="8" class="form-control"
-						id="descripcion"></textarea>
+					<textarea rows="8" class="form-control" id="descripcion"
+						th:field="*{descripcion}"></textarea>
 				</div>
 			</div>
-			<!-- Faltan los select de dificultades -->
+			<div class="row mb-3">
+				<label class="col-sm-2 col-form-label" for="dificultad">Dificultad</label>
+				<div class="col-sm-10">
+					<select class="form-select" id="dificultad" th:field="*{dificultad}">
+						<option th:each="d: ${dificultades}" th:value="${d.id}" th:text="${d.dificultad}"></option>
+					</select>
+				</div>
+			</div>
 			<div class="text-center mt-5">
-				<button type="submit" class="btn btn-danger">Añadir receta</button>
+				<button type="submit" class="btn btn-danger">Añadir</button>
 			</div>
 		</form>
 	</div>

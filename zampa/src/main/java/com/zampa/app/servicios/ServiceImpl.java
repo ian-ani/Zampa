@@ -48,4 +48,9 @@ public class ServiceImpl implements Servicio {
 	public Dificultad detalleDificultad(Long idDificultad) {
 		return dificultadRepository.findById(idDificultad).orElse(null);
 	}
+
+	@Override
+	public Receta anadirReceta(Receta receta) {
+		return recetaRepository.save(receta);
+	}
 }

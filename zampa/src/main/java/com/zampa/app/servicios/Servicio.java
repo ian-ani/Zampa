@@ -16,4 +16,6 @@ public interface Servicio {
 	
 	Page<Dificultad> listadoDificultades(Pageable pageable);
 	Dificultad detalleDificultad(Long idDificultad);
+	
+	Receta anadirReceta(Receta receta);
 }
