@@ -33,14 +33,14 @@ public class Receta {
     @JoinColumn(name = "id_dificultad")
     private Dificultad dificultad;
     
-    @Size(max = 255)
+    @Size(max = 255, message = "No puede tener un nombre mayor a 255 caracteres.")
     private String imagen;
     
-    @NotBlank
-    @Size(max = 50)
+    @NotBlank(message = "No puede estar vacío.")
+    @Size(min = 1, max = 50, message = "Debe contener de 1 a 50 caracteres.")
     private String nombre;
     
     @Lob
-    @Size(max = 5000)
+    @Size(max = 5000, message = "No puede tener más de 5000 caracteres.")
     private String descripcion;
 }

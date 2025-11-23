@@ -28,7 +28,7 @@ public class Dificultad {
     private Long id;
     
     @Pattern(regexp = "Fácil|Normal|Difícil")
-    @NotBlank
+    @NotBlank(message = "No puede estar vacía.")
     @Size(max = 20)
     private String dificultad;
 }
