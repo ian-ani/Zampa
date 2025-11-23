@@ -8,7 +8,7 @@
 	<div class="card mb-3 shadow" th:object="${receta}">
 		<div class="row g-0">
 			<div class="col-md-4">
-				<img th:src="${imagen != null and !imagen.isEmpty() ? imagen : '/img/default.webp'}"
+				<img th:src="*{imagen != null and !imagen.isEmpty() ? imagen : '/img/default.webp'}"
 					class="img-fluid rounded-start" th:alt="'Imagen de ' + *{nombre}"
 					th:title="*{nombre}">
 			</div>

@@ -8,7 +8,7 @@
 	<div class="border border-danger rounded shadow mt-5 mb-5 p-5">
 		<h2 class="mb-5 fs-4">Añadir receta</h2>
 		<form class="mx-auto" th:action="@{/anadir}" method="post"
-			th:object="${receta}">
+			th:object="${receta}" enctype="multipart/form-data">
 			<div class="row mb-3">
 				<label for="nombre" class="col-sm-2 col-form-label">Título</label>
 				<div class="col-sm-10">
@@ -21,8 +21,7 @@
 			<div class="row mb-3">
 				<label for="imagen" class="col-sm-2 col-form-label">Imagen (max. 1MB)</label>
 				<div class="col-sm-10">
-					<input type="file" class="form-control" id="imagen"
-						th:field="*{imagen}">
+					<input type="file" class="form-control" id="imagen" name="imagenForm">
 				<div class="text-danger" th:errors="*{imagen}"></div>
 				</div>
 			</div>

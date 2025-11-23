@@ -1,9 +1,14 @@
 /* PAQUETE */
 package com.zampa.app.controladores;
 
-import java.util.List;
-
 /* LIBRERIAS */
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +18,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /* LIBRERIAS INTERNAS */
 import com.zampa.app.modelos.Dificultad;
 import com.zampa.app.modelos.Receta;
 import com.zampa.app.repositorios.DificultadRepository;
 import com.zampa.app.servicios.Servicio;
-
-import jakarta.validation.Valid;
 
 @Controller
 public class IndexController {
@@ -74,7 +78,11 @@ public class IndexController {
 	}
 	
 	@PostMapping("anadir")
-	public String anadir(@Valid Receta receta, BindingResult bindingResult) {
+	public String anadir(@Valid Receta receta, BindingResult bindingResult, @RequestParam("imagenForm") MultipartFile imagenForm) throws IOException {
+		// Ruta de las imagenes guardadas y si no existe la carpeta, la crea
+		Path rutaSubidas = Paths.get("uploads");
+		Files.createDirectories(rutaSubidas);
+
 		System.out.println(receta);
 		
 		if (bindingResult.hasErrors()) {
@@ -83,11 +91,26 @@ public class IndexController {
 			return "anadir";
 		}
 		
+		if (!imagenForm.isEmpty()) {
+			// Validacion de tamaño (aprox. 1MB)
+			if (imagenForm.getSize() > 1000000) {
+				bindingResult.rejectValue("imagenForm", "error.imagenForm", "La imagen es mayor a 1MB.");
+				
+				return "anadir";
+			}
+			
+			String nombreImagen = imagenForm.getOriginalFilename();
+			
+			// Guardar fisicamente
+			Path rutaCompleta = rutaSubidas.resolve(nombreImagen);
+			Files.copy(imagenForm.getInputStream(), rutaCompleta, StandardCopyOption.REPLACE_EXISTING);
+			System.out.println("Archivo guardado en: " + rutaCompleta.toAbsolutePath());
+			
+			// Guardar en bd
+			receta.setImagen("/uploads/" + nombreImagen);
+		}
+		
 		servicio.anadirReceta(receta);
-		
-		//var receta = Receta.builder().nombre("").imagen("").descripcion("");
-		
-		//modelo.addAttribute("receta", receta);
 		
 		return "redirect:/";
 	}
