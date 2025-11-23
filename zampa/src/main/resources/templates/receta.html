@@ -12,6 +12,7 @@
 					class="img-fluid rounded-start" th:alt="'Imagen de ' + *{nombre}"
 					th:title="*{nombre}">
 			</div>
+			
 			<div class="col-md-8">
 				<div class="card-body">
 					<h5 class="card-title fs-3" th:text="*{nombre}">Título de la
@@ -20,6 +21,7 @@
 						receta.</p>
 				</div>
 			</div>
+			
 			<div class="card-footer bg-danger">
 				<small class="text-white fs-5" th:text="*{dificultad.dificultad}">Dificultad
 					de la receta</small>
