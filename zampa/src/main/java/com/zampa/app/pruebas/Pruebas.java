@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+/* LIBRERIAS INTERNAS */
 import com.zampa.app.modelos.Dificultad;
 import com.zampa.app.modelos.Receta;
 import com.zampa.app.repositorios.DificultadRepository;

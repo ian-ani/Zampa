@@ -1,5 +1,7 @@
+/* PAQUETE */
 package com.zampa.app.config;
 
+/* LIBRERIAS */
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode;

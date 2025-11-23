@@ -1,7 +1,6 @@
 /* PAQUETE */
 package com.zampa.app.repositorios;
 
-
 /* LIBRERIAS */
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
