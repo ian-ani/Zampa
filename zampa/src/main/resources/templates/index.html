@@ -7,38 +7,26 @@
 <!-- body -->
 <main>
 	<!-- Tarjetas  -->
-	<div class="card-group">
-		<div class="card" th:each="receta: ${pagina.content}"
+	<div
+		class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
+		<div class="col" th:each="receta, iter: ${pagina.content}"
 			th:object="${receta}">
-			<img th:src="*{imagen} != null ? *{imagen} : '/img/default.webp'"
-				class="card-img-top" alt="...">
-			<div class="card-body text-dark">
-				<h5 class="card-title" th:text="*{nombre}">Título de la receta</h5>
-				<p class="card-text">
-					<a class="text-secondary text-decoration-none" href="#" th:href="@{/receta(id=*{id})}">Ver receta</a>
-				</p>
-			</div>
-			<div class="card-footer bg-danger">
-				<small class="text-white" th:text="*{dificultad.dificultad}">Dificultad
-					de la receta</small>
-			</div>
-		</div>
-	</div>
-	
-	<div class="card-group mt-4">
-		<div class="card" th:each="receta: ${pagina.content}"
-			th:object="${receta}">
-			<img th:src="*{imagen} != null ? *{imagen} : '/img/default.webp'"
-				class="card-img-top" alt="...">
-			<div class="card-body text-dark">
-				<h5 class="card-title" th:text="*{nombre}">Título de la receta</h5>
-				<p class="card-text">
-					<a class="text-secondary text-decoration-none" href="#" th:href="@{/receta(id=*{id})}">Ver receta</a>
-				</p>
-			</div>
-			<div class="card-footer bg-danger">
-				<small class="text-white" th:text="*{dificultad.dificultad}">Dificultad
-					de la receta</small>
+			<div class="card border-danger">
+				<img th:src="*{imagen} != null ? *{imagen} : '/img/default.webp'"
+					class="card-img-top" th:alt="'Imagen de ' + *{nombre}" th:title="*{nombre}">
+
+				<div class="card-body text-dark">
+					<h5 class="card-title" th:text="*{nombre}">Título de la receta</h5>
+					<p class="card-text">
+						<a class="text-secondary text-decoration-none" href="#"
+							th:href="@{/receta(id=*{id})}">Ver receta</a>
+					</p>
+				</div>
+
+				<div class="card-footer bg-danger">
+					<small class="text-white" th:text="*{dificultad.dificultad}">Dificultad
+						de la receta</small>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -46,16 +34,22 @@
 	<!-- Paginación  -->
 	<nav class="mt-5 mb-5" th:object="${pagina}">
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link bi bi-chevron-double-left" th:classappend="*{first} ? 'disabled'" 
-			th:href="@{/(id=${dificultad.id},pagina=0)}"></a></li>
-			<li class="page-item"><a class="page-link bi bi-chevron-left" th:classappend="*{first} ? 'disabled'" 
-			th:href="@{/(id=${dificultad.id},pagina=*{number-1})}"></a></li>
+			<li class="page-item"><a
+				class="page-link bi bi-chevron-double-left"
+				th:classappend="*{first} ? 'disabled'"
+				th:href="@{/(id=${dificultad.id},pagina=0)}"></a></li>
+			<li class="page-item"><a class="page-link bi bi-chevron-left"
+				th:classappend="*{first} ? 'disabled'"
+				th:href="@{/(id=${dificultad.id},pagina=*{number-1})}"></a></li>
 			<li class="page-item active" aria-current="page"><a
-			class="page-link" th:text="*{number + 1}">Página actual</a></li>
-			<li class="page-item"><a class="page-link bi bi-chevron-right" th:classappend="*{last} ? 'disabled'" 
-			th:href="@{/(id=${dificultad.id},pagina=*{number+1})}"></a></li>
-			<li class="page-item"><a class="page-link bi bi-chevron-double-right" th:classappend="*{last} ? 'disabled'" 
-			th:href="@{/(id=${dificultad.id},pagina=*{totalPages-1})}"></a></li>
+				class="page-link" th:text="*{number + 1}">Página actual</a></li>
+			<li class="page-item"><a class="page-link bi bi-chevron-right"
+				th:classappend="*{last} ? 'disabled'"
+				th:href="@{/(id=${dificultad.id},pagina=*{number+1})}"></a></li>
+			<li class="page-item"><a
+				class="page-link bi bi-chevron-double-right"
+				th:classappend="*{last} ? 'disabled'"
+				th:href="@{/(id=${dificultad.id},pagina=*{totalPages-1})}"></a></li>
 		</ul>
 	</nav>
 </main>
