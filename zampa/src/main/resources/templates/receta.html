@@ -17,7 +17,7 @@
 				<div class="card-body">
 					<h5 class="card-title fs-3" th:text="*{nombre}">Título de la
 						receta</h5>
-					<p class="card-text" th:text="${descripcion != null and !descripcion.isEmpty() ? descripcion : 'No hay descripción.'}">Descripción de la
+					<p class="card-text" th:utext="*{descripcion} ?: 'No hay descripción.'">Descripción de la
 						receta.</p>
 				</div>
 			</div>
